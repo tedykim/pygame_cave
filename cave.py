@@ -1,4 +1,4 @@
-# ship_y가 좌우로 움직이게하기,위로가기 버튼변경 ,v2
+# ship_y가 좌우로 움직이기,위/아래 움직이기, x축에서 사라지지않게하기,재시작버튼변경,v3
 import sys
 from random import randint
 import pygame
@@ -57,6 +57,13 @@ def main():
                     velocity_x = 5
                 elif event.key == K_UP:  # 화살표 위 버튼
                     velocity_y = -5  # 위로 이동
+
+            # x축 값이 0 이하일 때 0으로 설정
+            if ship_x < 20:
+                ship_x = 20
+            # x축 값이 800 이상일 때 800으로 설정
+            if ship_x > 770 - ship_image.get_width():
+                ship_x = 770 - ship_image.get_width()        
 
         if game_over:
             if restart_button_rect.collidepoint(pygame.mouse.get_pos()):
