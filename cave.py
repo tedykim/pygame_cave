@@ -11,7 +11,7 @@ SURFACE = pygame.display.set_mode((800, 600))
 FPSCLOCK = pygame.time.Clock()
 
 def main():
-    """ メインルーチン """
+    """ 메인루틴,メインルーチン """
     walls = 80
     ship_y = 250
     velocity = 0
@@ -35,13 +35,13 @@ def main():
                 if event.key == K_SPACE:
                     is_space_down = True
 
-        # 自機を移動
+        # 비행선 이동, 自機を移動
         if not game_over:
             score += 10
             velocity += -3 if is_space_down else 3
             ship_y += velocity
 
-            # 洞窟をスクロール
+            # 동굴스크롤, 洞窟をスクロール
             edge = holes[-1].copy()
             test = edge.move(0, slope)
             if test.top <= 0 or test.bottom >= 600:
@@ -52,12 +52,12 @@ def main():
             del holes[0]
             holes = [x.move(-10, 0) for x in holes]
 
-            # 衝突 ?
+            # 충돌, 衝突 ?
             if holes[0].top > ship_y or \
                 holes[0].bottom < ship_y + 80:
                 game_over = True
 
-        # 描画
+        # 윈도우창, 描画
         SURFACE.fill((0, 255, 0))
         for hole in holes:
             pygame.draw.rect(SURFACE, (0, 0, 0), hole)
